@@ -1,18 +1,15 @@
 const mongoose = require("mongoose");
 
-const MONGO_URL = 'mongodb://127.0.0.1:27017/Shopping';
+const MONGO_URL = "mongodb://127.0.0.1:27017/Shopping";
 
-main()
-.then(()=>{
-    console.log("Connected to database");
-})
-.catch((err)=>{
-    console.log(err);
-});
-
-
-const ConnectDb = async function main(){
-    await mongoose.connect(MONGO_URL);
+const connectDB = async () => {
+    try {
+        await mongoose.connect(MONGO_URL);
+        console.log("Connected to database");
+    } catch (error) {
+        console.error(error);
+        process.exit(1);
+    }
 };
 
-module.exports  =  ConnectDb ;
+module.exports = connectDB;
